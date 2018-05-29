@@ -9,36 +9,40 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  loginObj: object = {};
+  //loginObj: object = {};
   loading = false;
   returnUrl: string;
+  userName : string;
+  password : string;
 
   constructor(
   private authService: AuthService,
   private route: ActivatedRoute,
   private router: Router) { }
 
+
+
+  
   ngOnInit() {
           // reset login status
-        this.authService.logout();
+        //this.authService.logout();
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  loginUser(data){
+  loginUser(){
   	this.loading = true;
-  	data = {
+  	let data = {
 	    "deviceType": "Web",
 	    "deviceId": "21356813646413",
 	    "loginUsing": "EmailId",
 	    "userType": "Doctor",
-	    "userName": data.emailId,
-	    "password": data.password
+	    "userName": this.userName,
+	    "password": this.password
 	}
 
     console.log(data)
-    console.log(this.loginObj)
     this.authService.login(data)
         .subscribe(
             data => this.router.navigate([this.returnUrl]),

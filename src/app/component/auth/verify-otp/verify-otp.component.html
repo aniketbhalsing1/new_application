@@ -1,0 +1,76 @@
+<div class="col-lg-12">
+  <div class="row col-lg-12">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+      <div class="padTop17Per">
+        <form  novalidate [formGroup]="verifyForm">
+          <div class="container card" style="background: #aaaa; box-shadow: 0px 6px 0px #aaaa;">
+            <div style="padding: 0 40px 50px 40px;">
+              <div class="loginCardHdr">
+                <label>Verify OTP</label>
+                <div class="clearfix"></div>
+              </div>
+              
+              <div class="col-lg-12">
+                <div class="col-lg-6 floatL">
+                  <label for="uname"><b>First Name</b></label>
+                  <input type="text" class="form-control mr-sm-2 nonePtr" formControlName="firstName" placeholder="Enter First Name" name="firstName" required>
+                </div>
+                <div class="col-lg-6 floatR">
+                  <label for="lastName"><b>Last Name</b></label>
+                  <input type="text" class="form-control mr-sm-2 nonePtr" formControlName="lastName" placeholder="Enter Last Name" name="lastName" required>                  
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              
+              <div class="col-lg-12">
+                <div class="col-lg-6 floatL">
+                  <label for="mobileNo"><b>Mobile Number</b></label>
+                  <input type="text" class="form-control mr-sm-2 nonePtr" formControlName="mobileNo" placeholder="Enter Last Name" name="mobileNo" required>                  
+                </div>
+                <div class="col-lg-6 floatR">
+                  <label for="emailId"><b>Email Id</b></label>
+                  <input type="text" class="form-control mr-sm-2 nonePtr" formControlName="emailId" placeholder="Enter Last Name" name="emailId" required>                  
+                </div>               
+                <div class="clearfix"></div>
+              </div>
+              
+              <div class="col-lg-12"> 
+                <div class="col-lg-6 floatL">
+                  <label for="registrationNo"><b>Registration No</b></label>
+                  <input type="text" class="form-control mr-sm-2 nonePtr" placeholder="Dr/000000/xxx" formControlName="registrationNo" placeholder="Enter User Name" name="uname" required>  
+                </div>                
+                <div class="col-lg-6 floatR">
+                  </div>                
+                  <div class="clearfix"></div>
+              </div>
+            
+              <div class="col-lg-12 padTop15">
+                <div class="padTop15 textCenter">  
+                  <span>OTP has been sent on your E-mail Id. Please enter OPT</span>
+                </div>
+              </div>
+              <div class="col-lg-12"> 
+                <div class="col-lg-10 padTop15 floatL">
+                    <input type="text" class="form-control marLeft47Per width25Per floatL" formControlName="otp" placeholder="OTP" name="uname" required>
+                   <span (click)="resendOTP()" class="width25Per floatR padTop1Per"><a href="">Resend</a></span>
+                  </div>                
+                <div class="col-lg-2 floatR">
+                   
+                </div>                
+                  <div class="clearfix"></div>
+              </div>
+
+              <div class="col-lg-12 padTop15">
+                <div class="padTop15 textCenter">  
+                  <button type="submit" class="btn btn-primary" (click)="verifyOTP()">Verify OPT</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>  
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+</div>
