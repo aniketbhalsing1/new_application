@@ -17,15 +17,13 @@ import { SignupComponent } from './component/auth/signup/signup.component';
 import { HttpService } from './services/http-services/http.service';
 import { AuthService } from './component/auth/auth.service';
 import { VerifyOtpComponent } from './component/auth/verify-otp/verify-otp.component';
-import { ProfileComponent } from './component/profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    VerifyOtpComponent,
-    ProfileComponent
+    VerifyOtpComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, ToastModule.forRoot(),

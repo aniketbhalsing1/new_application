@@ -21,31 +21,25 @@ export class LoginComponent implements OnInit {
   private router: Router) { }
 
 
-
-  
-  ngOnInit() {
-          // reset login status
-        //this.authService.logout();
-
-        // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-  }
+    ngOnInit() {
+        console.log("ngOnInIt")
+    }
 
   loginUser(){
-  	this.loading = true;
-  	let data = {
-	    "deviceType": "Web",
-	    "deviceId": "21356813646413",
-	    "loginUsing": "EmailId",
-	    "userType": "Doctor",
-	    "userName": this.userName,
-	    "password": this.password
-	}
+    this.loading = true;
+    let data = {
+      "deviceType": "Web",
+      "deviceId": "21356813646413",
+      "loginUsing": "EmailId",
+      "userType": "Doctor",
+      "userName": this.userName,
+      "password": this.password
+  }
 
     console.log(data)
     this.authService.login(data)
         .subscribe(
-            data => this.router.navigate([this.returnUrl]),
+            data => this.router.navigate(['/profile']),
             error => this.loading = false
         );
     }
