@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   	loginObj : {};
-    loginTrue : boolean = true;
-    signupTrue :boolean = true;
+    // loginTrue : boolean = true;
+    // signupTrue :boolean = false;
 }
