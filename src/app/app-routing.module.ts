@@ -18,14 +18,14 @@ const appRoutes: Routes = [
     { path: 'verifyEmail', component: VerifyEmailComponent }
   ]
 },
-{
-    path: 'profileStatus',
+// {
+//     path: 'profileStatus',
+//     loadChildren: 'app/component/user-profile/user-profile.module#UserProfileModule'
+//   },
+  {
+    path: 'profile',
     loadChildren: 'app/component/user-profile/user-profile.module#UserProfileModule'
   },
-  // {
-  //   path: 'profile',
-  //   loadChildren: 'app/component/user-profile/user-profile.module#UserProfileModule'
-  // },
  ];
 
 
