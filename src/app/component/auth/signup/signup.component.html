@@ -12,24 +12,48 @@
 
               <div class="col-lg-12">
                 <div class="col-lg-6 floatL">
-                  <label for="uname"><b>First Name</b></label>
-                  <input type="text" class="form-control mr-sm-2" formControlName="firstName" placeholder="Enter First Name" name="firstName" required>
+                  <!-- <label for="uname"><b>First Name</b></label>
+                  <input type="text" class="form-control mr-sm-2" formControlName="firstName" placeholder="Enter First Name" name="firstName" required> -->
+                  <mat-form-field class="width100Per color-white f-14">
+                    <input type="text" matInput placeholder="First Name" formControlName="firstName" [errorStateMatcher]="matcher">
+                    <mat-error *ngFor="let validation of validation_messages.firstMiddleLastName">
+                      <mat-error class="error-message" *ngIf="(signupForm.get('firstName').hasError(validation.type) || signupForm.hasError(validation.type)) && (signupForm.get('firstName').dirty || signupForm.get('firstName').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+                  </mat-form-field>
                 </div>
                 <div class="col-lg-6 floatR">
-                  <label for="lastName"><b>Last Name</b></label>
-                  <input type="text" class="form-control mr-sm-2" formControlName="lastName" placeholder="Enter Last Name" name="lastName" required>                  
+                  <!-- <label for="lastName"><b>Last Name</b></label>
+                  <input type="text" class="form-control mr-sm-2" formControlName="lastName" placeholder="Enter Last Name" name="lastName" required>                   -->
+                  <mat-form-field class="width100Per color-white f-14">
+                    <input type="text" matInput placeholder="Last Name" formControlName="lastName" [errorStateMatcher]="matcher">
+                    <mat-error *ngFor="let validation of validation_messages.firstMiddleLastName">
+                      <mat-error class="error-message" *ngIf="(signupForm.get('lastName').hasError(validation.type) || signupForm.hasError(validation.type)) && (signupForm.get('lastName').dirty || signupForm.get('lastName').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+                  </mat-form-field>
                 </div>
                 <div class="clearfix"></div>
               </div>
               
               <div class="col-lg-12">
                 <div class="col-lg-6 floatL">
-                  <label for="mobileNo"><b>Mobile Number</b></label>
-                  <input type="text" class="form-control mr-sm-2" formControlName="mobileNo" placeholder="Enter Mobile Number" name="mobileNo" required>                  
+                  <!-- <label for="mobileNo"><b>Mobile Number</b></label>
+                  <input type="text" class="form-control mr-sm-2" formControlName="mobileNo" placeholder="Enter Mobile Number" name="mobileNo" required>                   -->
+                  <mat-form-field class="width100Per color-white f-14">
+                    <input type="text" matInput placeholder="Mobile Number" formControlName="mobileNo" [errorStateMatcher]="matcher">
+                    <mat-error *ngFor="let validation of validation_messages.mobileNo">
+                      <mat-error class="error-message" *ngIf="(signupForm.get('mobileNo').hasError(validation.type) || signupForm.hasError(validation.type)) && (signupForm.get('mobileNo').dirty || signupForm.get('mobileNo').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+                  </mat-form-field>
                 </div>
                 <div class="col-lg-6 floatR">
-                  <label for="emailId"><b>Email Id</b></label>
-                  <input type="text" class="form-control mr-sm-2" formControlName="emailId" placeholder="Enter Email Id" name="emailId" required>                  
+                  <!-- <label for="emailId"><b>Email Id</b></label>
+                  <input type="text" class="form-control mr-sm-2" formControlName="emailId" placeholder="Enter Email Id" name="emailId" required>                   -->
+                  <mat-form-field class="width100Per color-white f-14">
+                    <input type="text" matInput placeholder="Email Id" formControlName="emailId" [errorStateMatcher]="matcher">
+                    <mat-error *ngFor="let validation of validation_messages.email">
+                      <mat-error class="error-message" *ngIf="(signupForm.get('emailId').hasError(validation.type) || signupForm.hasError(validation.type)) && (signupForm.get('emailId').dirty || signupForm.get('emailId').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+                  </mat-form-field>
                 </div>               
                 <div class="clearfix"></div>
               </div>
@@ -37,62 +61,46 @@
 
               <div class="col-lg-12">
                 <div class="col-lg-6 floatL">
-                  <label for="registrationNo"><b>Registration No</b></label>
-                  <input type="text" class="form-control mr-sm-2" placeholder="Dr/000000/xxx" formControlName="registrationNo" placeholder="Enter Registration No" name="uname" required>  
+                  <!-- <label for="registrationNo"><b>Registration No</b></label>
+                  <input type="text" class="form-control mr-sm-2" placeholder="Dr/000000/xxx" formControlName="registrationNo" placeholder="Enter Registration No" name="uname" required>   -->
+                  <mat-form-field class="width100Per color-white f-14">
+                    <input type="text" matInput placeholder="Registration No" formControlName="registrationNo" [errorStateMatcher]="matcher">
+                    <mat-error *ngFor="let validation of validation_messages.registrationNo">
+                      <mat-error class="error-message" *ngIf="(signupForm.get('registrationNo').hasError(validation.type) || signupForm.hasError(validation.type)) && (signupForm.get('registrationNo').dirty || signupForm.get('registrationNo').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+                  </mat-form-field>
                 </div>
                 <div class="col-lg-6 floatL">
-                  <label for="psw"><b>Password</b></label>
-                  <input type="password" class="form-control mr-sm-2" formControlName="password" placeholder="Enter Password" name="psw" required>
+                  <!-- <label for="psw"><b>Password</b></label>
+                  <input type="password" class="form-control mr-sm-2" formControlName="password" placeholder="Enter Password" name="psw" required> -->
+                  <mat-form-field class="width100Per color-white f-14">
+                    <input type="password" matInput placeholder="Password" formControlName="password" [errorStateMatcher]="matcher">
+                    <mat-error *ngFor="let validation of validation_messages.password">
+                      <mat-error class="error-message" *ngIf="signupForm.get('password').hasError(validation.type) && (signupForm.get('password').dirty || signupForm.get('password').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+                  </mat-form-field>
                 </div>
                 <div class="clearfix"></div>
               </div>
               
               <div class="col-lg-12">
                 <div class="col-lg-6 floatL">
-                  <label for="psw"><b>Confirm Password</b></label>
-                  <input type="password" class="form-control mr-sm-2" formControlName="confirmPassword" placeholder="Enter Confirm Password" name="psw" required>  
+                  <!-- <label for="psw"><b>Confirm Password</b></label>
+                  <input type="password" class="form-control mr-sm-2" formControlName="confirmPassword" placeholder="Enter Confirm Password" name="psw" required>   -->
+                  <mat-form-field class="width100Per color-white f-14">
+                    <input type="password" matInput placeholder="Confirm Password" formControlName="confirmPassword" [errorStateMatcher]="matcher">
+                    <mat-error *ngFor="let validation of validation_messages.confirmPassword">
+                      <mat-error class="error-message" *ngIf="(signupForm.get('confirmPassword').hasError(validation.type) || signupForm.hasError(validation.type)) && (signupForm.get('confirmPassword').dirty || signupForm.get('confirmPassword').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+                  </mat-form-field>
                 </div>
                 <div class="col-lg-6 floatR">
                 </div>               
                 <div class="clearfix"></div>
               </div>
-
-
-              <!-- <div class="col-lg-12">
-                <div class="col-lg-6 floatL">
-                  <label for="uname"><b>First Name</b></label>
-                  <input type="text" class="form-control mr-sm-2" formControlName="firstName" placeholder="Enter First Name" name="firstName" required>
-                </div>
-                <div class="col-lg-6 floatL">
-                  <label for="lastName"><b>Last Name</b></label>
-                  <input type="text" class="form-control mr-sm-2" formControlName="lastName" placeholder="Enter Last Name" name="lastName" required>                  
-                </div>
-                <div class="col-lg-6 floatL">
-                  <label for="mobileNo"><b>Mobile Number</b></label>
-                  <input type="text" class="form-control mr-sm-2" formControlName="mobileNo" placeholder="Enter Last Name" name="mobileNo" required>                  
-                </div>
-
-                
-                <div class="col-lg-6 floatR">
-                  <label for="emailId"><b>Email Id</b></label>
-                  <input type="text" class="form-control mr-sm-2" formControlName="emailId" placeholder="Enter Last Name" name="emailId" required>                  
-                </div>                
-                <div class="col-lg-6 floatL">
-                  <label for="registrationNo"><b>Registration No</b></label>
-                  <input type="text" class="form-control mr-sm-2" placeholder="Dr/000000/xxx" formControlName="registrationNo" placeholder="Enter User Name" name="uname" required>  
-                </div>
-
-                <div class="col-lg-6 floatL">
-                  <label for="psw"><b>Password</b></label>
-                  <input type="password" class="form-control mr-sm-2" formControlName="password" placeholder="Enter Password" name="psw" required>
-                </div>
-                <div class="col-lg-6 floatL">
-                  <label for="psw"><b>Confirm Password</b></label>
-                  <input type="password" class="form-control mr-sm-2" formControlName="confirmPassword" placeholder="Enter Confirm Password" name="psw" required>  
-                </div>                
-              </div> -->
               <div class="padTop15 textCenter">  
-                <button type="submit" class="btn btn-primary" (click)="signUpUser(signupForm)">Sign Up</button>
+                <button class="saveBtn"  mat-raised-button cdkFocusInitial (click)="signUpUser(signupForm)">Save</button>
+                <!-- <button type="submit" class="btn btn-primary" (click)="signUpUser(signupForm)">Sign Up</button> -->
               </div> 
               <div class="padTop15 textCenter">  
                 <span>If you are already regiistered. <a href=""  routerLink="/login" routerLinkActive="active">Sign In</a></span>

@@ -1,0 +1,113 @@
+<div class="minHeight100Per">
+    <div class="container-fluid well1 span6 padTop2Per">
+
+      <div style="height: 467px">
+          <div class="authRoutingDiv col-lg-12">
+              <div class="row col-lg-12">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6 padTop8Per">
+                  <div cass="">
+                    <form novalidate> 
+                      <div class="container card" style="background: #aaaa;">
+                        <div style="padding: 0 40px 50px 40px;">
+                          <div class="loginCardHdr">
+                            <label>Welcome</label>
+                          </div>
+                          <div class="col-lg-12 row">
+                            <div>
+                              <label for="">Dr. {{personalDetails.firstName}} {{personalDetails.lastName}}</label>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-12 row">
+                            <div>
+                              <label for="">Mobile No.</label>
+                            </div>
+                            <div>
+                              <label for="">{{personalDetails.mobileVerified}}</label>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-12 row">
+                            <div>
+                              <label for="">Email Id</label>
+                            </div>
+                            <div>
+                              <label for="">{{personalDetails.emailVerified}}</label>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-12 row">
+                            <div>
+                              <label for="">Education Details</label>
+                            </div>
+                            <div>
+                              <label for="">{{personalDetails.educationProfile}}</label>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-12 row">
+                            <div>
+                              <label for="">Clinic Details</label>
+                            </div>
+                            <div>
+                              <label for="">{{personalDetails.clinicProfile}}</label>
+                            </div>
+                          </div>
+                               
+                          <div class="padTop8Per textCenter">  
+                            <button class="saveBtn"  mat-raised-button cdkFocusInitial (click)="loginUser()">Continue</button>                
+                            <div class="clearfix"></div>
+                          </div>            
+                        </div>
+                      </div>
+                    </form>
+                  </div>  
+                </div>
+                <div class="col-lg-3"></div>
+              </div>
+            </div>
+      </div>
+  </div>
+
+<!-- <div class="authRoutingDiv col-lg-12">
+    <div class="row col-lg-12">
+      <div class="col-lg-3"></div>
+      <div class="col-lg-6 padTop8Per">
+        <div cass="">
+          <form novalidate> 
+            <div class="container card" style="background: #aaaa;">
+              <div style="padding: 0 40px 50px 40px;">
+                <div class="loginCardHdr">
+                  <label>Welcome</label>
+                </div>
+                <div>
+                  <label for="">Mobile No.</label>
+                </div>
+                <div>
+                  <label for="">Email Id</label>
+                </div>
+                <div>
+                  <label for="">Education Details</label>
+                </div>                            
+                <div>
+                  <label for="">Clinic Details</label>
+                </div>                            
+                <div class="padTop8Per textCenter">  
+                  <button class="saveBtn"  mat-raised-button cdkFocusInitial (click)="loginUser()">Save</button>                
+                  <div class="clearfix"></div>
+                </div>
+  
+                <div class="padTop5Per textCenter color-white f-14">  
+                  <span>If you are not registered yet ? <a href="" routerLink="/signup" routerLinkActive="active">Sign Up</a></span>
+                  <div class="clearfix"></div>
+                </div>
+  
+              </div>
+            </div>
+          </form>
+        </div>  
+      </div>
+      <div class="col-lg-3"></div>
+    </div>
+  </div> -->

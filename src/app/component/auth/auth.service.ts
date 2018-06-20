@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import { HttpService } from './../../services/http-services/http.service';
 //import { HttpInterceptorService } from './../../http-interceptor.service';
-import { error } from 'protractor';
+//import { error } from 'protractor';
 import { Data } from '@angular/router';
 
 @Injectable()
@@ -17,8 +17,9 @@ export class AuthService {
     // , {headers : {'Content-Type' : 'application/json'}}
       return this.http.post<any>(this.requestURL+'doctor/sign/in', Data)
           .map(user => {
-              if (user && user.token) 
-                  localStorage.setItem('currentUser', JSON.stringify(user));
+              if (user && user.data) 
+              localStorage.setItem('Authorization', user.data.Authorization);
+              localStorage.setItem('currentUser', JSON.stringify(user));
               return user;
           });
   }

@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Http, HttpModule } from '@angular/http';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import { CommonModule } from '@angular/common';
 
 //import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
@@ -21,6 +22,11 @@ import { AppFooterComponent } from './component/-layouts/app-footer/app-footer.c
 
 import { routing } from './app-routing.module';
 import { MyHttpLogInterceptor } from './new-interceptor.service';
+import { AngularMaterialModule } from './modules/angular-material.module'
+import {ErrorStateMatcher} from '@angular/material/core';
+import { EqualValidator } from './directive/validate-equal.directive';
+import { VerifyEmailComponent } from './component/auth/verify-email/verify-email.component';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +36,9 @@ import { MyHttpLogInterceptor } from './new-interceptor.service';
     VerifyOtpComponent,
     AuthHeaderComponent,
     ProfileHeaderComponent,
-    AppFooterComponent
+    AppFooterComponent,
+    EqualValidator,
+    VerifyEmailComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, ToastModule.forRoot(),
@@ -39,9 +47,10 @@ import { MyHttpLogInterceptor } from './new-interceptor.service';
     FormsModule, 
     ReactiveFormsModule,
     routing,
-    //NgbModule.forRoot()
+    CommonModule,
+    AngularMaterialModule
   ],
-  providers: [HttpService, AuthService, { provide: HTTP_INTERCEPTORS, useClass: MyHttpLogInterceptor, multi: true }],
+  providers: [HttpService, AuthService, ErrorStateMatcher, { provide: HTTP_INTERCEPTORS, useClass: MyHttpLogInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

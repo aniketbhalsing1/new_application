@@ -12,13 +12,6 @@
               <div>
                   <mat-form-field class="width100Per color-white f-14">
                     <input matInput placeholder="Email Id" formControlName="userName" [errorStateMatcher]="matcher">
-                    <!-- <mat-error *ngIf="loginForm.controls['userName'].errors?.required &&
-                    loginForm.controls['userName'].touched">
-                    Email Id is required
-                    </mat-error>
-                    <mat-error *ngIf="loginForm.controls['userName'].pattern">
-                      Please enter a valid email address
-                    </mat-error>  -->
                     <mat-error *ngFor="let validation of validation_messages.email">
                       <mat-error class="error-message" *ngIf="loginForm.get('userName').hasError(validation.type) && (loginForm.get('userName').dirty || loginForm.get('userName').touched)">{{validation.message}}</mat-error>
                     </mat-error>
@@ -33,22 +26,11 @@
                     <mat-error *ngFor="let validation of validation_messages.password">
                       <mat-error class="error-message" *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">{{validation.message}}</mat-error>
                     </mat-error>
-                    <!-- <mat-error *ngIf="loginForm.controls['password'].required">
-                      Password is required
-                    </mat-error> -->
                   </mat-form-field>
-<!-- 
-                <label for="uname"><b>Username</b></label> 
-                <input type="text" class="form-control mr-sm-2" [(ngModel)]="userName" placeholder="Enter Username" name="uname" required>
-
-                <label for="psw"><b>Password</b></label>
-                <input type="password" class="form-control mr-sm-2" [(ngModel)]="password" placeholder="Enter Password" name="psw" required> -->
               </div>
               
               <div class="padTop8Per textCenter">  
-                <!-- <button type="submit" class="btn btn-primary" (click)="loginUser()">Login</button> -->
-                <button class="saveBtn"  mat-raised-button cdkFocusInitial (click)="loginUser(loginForm)">Save</button>
-                
+                <button class="saveBtn"  mat-raised-button cdkFocusInitial (click)="loginUser(loginForm)">Save</button>                
                 <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                 <div class="clearfix"></div>
               </div>

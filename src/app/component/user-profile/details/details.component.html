@@ -1,101 +1,362 @@
 <div class="minHeight100Per">
-  <div class="container-fluid well span6 padTop2Per">
+  <div class="container-fluid well1 span6 padTop2Per">
     <div class="row profileHdr">
-      <div class="col-lg-5 padTop10">
+      <div class="col-lg-5 padd5">
       <img src="https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm" class="profImg">
       </div>
       
-      <div class="col-lg-7">
-          <h4>Dr. Aniket Bhalsing (M.B.B.S.)</h4>
-          <small>Nero Surgen</small>
-          <h6>Sakore Hospital, Tukaram nagar, Kharadi, Pune, 411014</h6>
-          <h6>Phone No: 022-111111 / 09999999999</h6>
-          <h6>Email: MyEmail@gmail.com</h6>
+      <div class="col-lg-7 padd10">
+          <h4>Dr. {{personalDetails.firstName}} {{personalDetails.middleName}} {{personalDetails.lastName}} (M.B.B.S.)</h4>
+          <h6>{{personalDetails.line1}}, {{personalDetails.line2 ? personalDetails.line2+' '+personalDetails.area : personalDetails.area}}, {{personalDetails.city}}, {{personalDetails.state}}, {{personalDetails.pincode}}</h6>
+          <h6>Phone No: {{personalDetails.mobileNo}} / {{personalDetails.mobileNo1}}</h6>
+          <h6>Email: {{personalDetails.emailId}}</h6>
       </div>
     </div>
-   
-    <!-- <div class="container">
-				<ngb-tabset type="pills">
-					 <ngb-tab title="Simple">
-							<ng-template ngbTabContent>
-								 <p>Star ratings using ng-bootstrap</p>
-										 <ngb-rating [(rate)]="currentRate">
-												 <ng-template let-fill="fill">
-														<span class="star" [class.filled]="fill === 100">&#9733;</span>
-												 </ng-template>
-										 </ngb-rating>
-										 <hr>
-										 <pre>Rate: <b>{{currentRate}}</b></pre>
-							</ng-template>
-					 </ngb-tab>
-				<ngb-tab>
-					 <ng-template ngbTabTitle><b>Fancy</b> title</ng-template>
-					 <ng-template ngbTabContent>
-							<p>Progress bars using ng-bootstrap</p>
-							<p>
-								 <ngb-progressbar type="success" [value]="25"></ngb-progressbar>
-							</p>
-							<p>
-								 <ngb-progressbar type="info" [value]="50"></ngb-progressbar>
-							</p>
-							<p>
-								 <ngb-progressbar type="warning" [value]="75"></ngb-progressbar>
-							</p>
-							<p>
-								 <ngb-progressbar type="danger" [value]="100"></ngb-progressbar>
-							</p>
-				</ng-template>
-		 </ngb-tab>
-		 <ngb-tab title="Not Disabled">
-				<ng-template ngbTabContent>
-					 <p>Popovers that dismiss on the second click</p>
-					 <button type="button" class="btn btn-secondary" placement="top" ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." popoverTitle="Popover on top">
-					 Popover on top
-					 </button>
-					 <button type="button" class="btn btn-secondary" placement="right" ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." popoverTitle="Popover on right">
-					 Popover on right
-					 </button>
-					 <button type="button" class="btn btn-secondary" placement="bottom" ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." popoverTitle="Popover on bottom">
-					 Popover on bottom
-					 </button>
-					 <button type="button" class="btn btn-secondary" placement="left" ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." popoverTitle="Popover on left">
-					 Popover on left
-					 </button>
-				</ng-template>
-			</ngb-tab>
-		 </ngb-tabset>
-		 </div> -->
-    
-    
-    <!-- <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
-        <div class="btn-group" role="group">
-            <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                <div class="hidden-xs">Personal</div>
-            </button>
-        </div>
-        <div class="btn-group" role="group">
-            <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-                <div class="hidden-xs">Professional</div>
-            </button>
-        </div>
-        <div class="btn-group" role="group">
-            <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                <div class="hidden-xs">Clinic</div>
-            </button>
-        </div>
-    </div>
+    <div style="height: 467px">
+      <mat-tab-group>
+        <mat-tab label="Personal">
+          <div class="" style="padding-bottom: 35px;display: block;">
+            <form *ngIf="personalLoad" novalidate [formGroup]="personalForm">
+              <div style=" padding-left: 10px; font-size: 12px;">
+                  <label>Personal Details</label>
+              </div>
+      
+              <div class="row col-lg-12">
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                   <mat-form-field class="width100Per f-14">
+                    <input type="text" matInput placeholder="First Name" formControlName="firstName" [errorStateMatcher]="matcher">
+                    <mat-error *ngFor="let validation of validation_messages.firstMiddleLastName">
+                      <mat-error class="error-message" *ngIf="(personalForm.get('firstName').hasError(validation.type) || personalForm.hasError(validation.type)) && (personalForm.get('firstName').dirty || personalForm.get('firstName').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+                  </mat-form-field> 
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                   <mat-form-field class="width100Per f-14">
+                    <input type="text" matInput placeholder="Middle Name" formControlName="middleName" [errorStateMatcher]="matcher">
+                    <mat-error *ngFor="let validation of validation_messages.firstMiddleLastName">
+                      <mat-error class="error-message" *ngIf="(personalForm.get('middleName').hasError(validation.type) || personalForm.hasError(validation.type)) && (personalForm.get('middleName').dirty || personalForm.get('middleName').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+                  </mat-form-field> 
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                  <mat-form-field class="width100Per f-14">
+                    <input type="text" matInput placeholder="Last Name" formControlName="lastName" [errorStateMatcher]="matcher">
+                    <mat-error *ngFor="let validation of validation_messages.firstMiddleLastName">
+                      <mat-error class="error-message" *ngIf="(personalForm.get('lastName').hasError(validation.type) || personalForm.hasError(validation.type)) && (personalForm.get('lastName').dirty || personalForm.get('lastName').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+                  </mat-form-field> 
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                  <mat-form-field class="width100Per f-14">
+                    <input type="text" matInput placeholder="Mobile Number" formControlName="mobileNo" [errorStateMatcher]="matcher">
+                    <mat-error *ngFor="let validation of validation_messages.mobileNo">
+                      <mat-error class="error-message" *ngIf="(personalForm.get('mobileNo').hasError(validation.type) || personalForm.hasError(validation.type)) && (personalForm.get('mobileNo').dirty || personalForm.get('mobileNo').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+                  </mat-form-field> 
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              
+              <div class="row col-lg-12 padTop10">
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                  <mat-form-field class="width100Per f-14">
+                    <input type="text" matInput placeholder="Mobile Number 1" formControlName="mobileNo1" [errorStateMatcher]="matcher">
+                    <mat-error *ngFor="let validation of validation_messages.mobileNo">
+                      <mat-error class="error-message" *ngIf="(personalForm.get('mobileNo').hasError(validation.type) || personalForm.hasError(validation.type)) && (personalForm.get('mobileNo').dirty || personalForm.get('mobileNo').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+                  </mat-form-field> 
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                  <mat-form-field class="width100Per f-14">
+                    <input type="text" matInput placeholder="Office Number" formControlName="officeNo" [errorStateMatcher]="matcher">
+                    <mat-error *ngFor="let validation of validation_messages.mobileNo">
+                      <mat-error class="error-message" *ngIf="(personalForm.get('mobileNo').hasError(validation.type) || personalForm.hasError(validation.type)) && (personalForm.get('mobileNo').dirty || personalForm.get('mobileNo').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+                  </mat-form-field> 
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                  <mat-form-field class="width100Per f-14">
+                    <input type="text" matInput placeholder="Email Id" formControlName="emailId" [errorStateMatcher]="matcher">
+                    <mat-error *ngFor="let validation of validation_messages.emailId">
+                      <mat-error class="error-message" *ngIf="(personalForm.get('emailId').hasError(validation.type) || personalForm.hasError(validation.type)) && (personalForm.get('emailId').dirty || personalForm.get('emailId').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+                  </mat-form-field> 
+                </div>        
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                  <mat-form-field class="width100Per f-14">
+                    <input type="text" matInput placeholder="Registration Number" formControlName="registrationNo" [errorStateMatcher]="matcher">
+                    <mat-error *ngFor="let validation of validation_messages.registrationNo">
+                      <mat-error class="error-message" *ngIf="(personalForm.get('registrationNo').hasError(validation.type) || personalForm.hasError(validation.type)) && (personalForm.get('registrationNo').dirty || personalForm.get('registrationNo').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+                  </mat-form-field>
+                </div>       
+                <div class="clearfix"></div>
+              </div>
+      
+              <div class="row col-lg-12 padTop10">
+                  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                    <mat-form-field class="width100Per f-14">
+                      <input type="text" matInput placeholder="Aadhar Number" formControlName="adharNo" [errorStateMatcher]="matcher">
+                      <mat-error *ngFor="let validation of validation_messages.adharNo">
+                        <mat-error class="error-message" *ngIf="(personalForm.get('adharNo').hasError(validation.type) || personalForm.hasError(validation.type)) && (personalForm.get('adharNo').dirty || personalForm.get('adharNo').touched)">{{validation.message}}</mat-error>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                    <mat-form-field class="width100Per f-14">
+                      <input type="text" matInput placeholder="PAN Number" formControlName="panNo" [errorStateMatcher]="matcher">
+                      <mat-error *ngFor="let validation of validation_messages.panNo">
+                        <mat-error class="error-message" *ngIf="(personalForm.get('panNo').hasError(validation.type) || personalForm.hasError(validation.type)) && (personalForm.get('panNo').dirty || personalForm.get('panNo').touched)">{{validation.message}}</mat-error>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>       
+                  <div class="clearfix"></div>
+                </div>
+      
+              <div class="clearfix"></div>
+              <div class="padTop10" style="padding-left: 10px; font-size: 12px;">
+                
+                <label for="">Address Details</label>
+              </div>
+              <div class="row col-lg-12">
+                  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">                  
+                    <mat-form-field class="marTop10 f-14">
+                      <mat-select placeholder="Sate" formControlName="state" [(value)]="state" (change)="getCity('')">
+                        <mat-option *ngFor="let state of stateList" [value]="state.stateId">
+                          {{ state.stateName }}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error *ngFor="let validation of validation_messages.state">
+                        <mat-error class="error-message" *ngIf="(personalForm.get('state').hasError(validation.type) || personalForm.hasError(validation.type)) && (personalForm.get('state').dirty || personalForm.get('state').touched)">{{validation.message}}</mat-error>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                    <mat-form-field class="marTop10 f-14">
+                      <mat-select placeholder="City" formControlName="city" [(value)]="city" (change)="getArea('')">
+                        <mat-option *ngFor="let city of cityList" [value]="city.cityId">
+                          {{ city.cityName }}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error *ngFor="let validation of validation_messages.city">
+                        <mat-error class="error-message" *ngIf="(personalForm.get('city').hasError(validation.type) || personalForm.hasError(validation.type)) && (personalForm.get('city').dirty || personalForm.get('city').touched)">{{validation.message}}</mat-error>
+                      </mat-error>
+                    </mat-form-field> 
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                    <mat-form-field class="marTop10 f-14">
+                      <mat-select placeholder="Area" formControlName="area" [(value)]="area">
+                        <mat-option *ngFor="let area of areaList" [value]="area.areaId">
+                          {{ area.areaName }}
+                        </mat-option>
+                      </mat-select>
+                       <mat-error *ngFor="let validation of validation_messages.area">
+                        <mat-error class="error-message" *ngIf="(personalForm.get('area').hasError(validation.type) || personalForm.hasError(validation.type)) && (personalForm.get('area').dirty || personalForm.get('area').touched)">{{validation.message}}</mat-error>
+                      </mat-error> 
+                    </mat-form-field>
+                    
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                    <mat-form-field class="width100Per f-14">
+                      <input type="text" matInput placeholder="Line1" formControlName="line1" [errorStateMatcher]="matcher">
+                       <mat-error *ngFor="let validation of validation_messages.addressLine1">
+                        <mat-error class="error-message" *ngIf="(personalForm.get('line1').hasError(validation.type) || personalForm.hasError(validation.type)) && (personalForm.get('line1').dirty || personalForm.get('line1').touched)">{{validation.message}}</mat-error>
+                      </mat-error>
+                    </mat-form-field> 
+                  </div>
+                  <div class="clearfix"></div>
+              </div>
+              <div class="row col-lg-12 padTop10">
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                    <mat-form-field class="width100Per f-14">
+                      <input type="text" matInput placeholder="Line 2" formControlName="line2" [errorStateMatcher]="matcher">
+                      <mat-error *ngFor="let validation of validation_messages.addressLine2">
+                        <mat-error class="error-message" *ngIf="(personalForm.get('line2').hasError(validation.type) || personalForm.hasError(validation.type)) && (personalForm.get('line2').dirty || personalForm.get('line2').touched)">{{validation.message}}</mat-error>
+                      </mat-error>
+                    </mat-form-field>
+                  </div> 
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                  <mat-form-field class="width100Per f-14">
+                    <input type="text" matInput placeholder="Pincode" formControlName="pincode" [errorStateMatcher]="matcher">
+                    <mat-error *ngFor="let validation of validation_messages.pincode">
+                      <mat-error class="error-message" *ngIf="(personalForm.get('pincode').hasError(validation.type) || personalForm.hasError(validation.type)) && (personalForm.get('pincode').dirty || personalForm.get('pincode').touched)">{{validation.message}}</mat-error>
+                    </mat-error> 
+                  </mat-form-field>
+                </div>              
+                <div class="clearfix"></div>
+              </div>
 
-    <div class="well">
-      <div class="tab-content">
-        <div class="tab-pane fade in active" id="tab1">
-          <h3>This is tab 1</h3>
-        </div>
-        <div class="tab-pane fade in" id="tab2">
-          <h3>This is tab 2</h3>
-        </div>
-        <div class="tab-pane fade in" id="tab3">
-          <h3>This is tab 3</h3>
-        </div>
-      </div>
-    </div> -->
+              <div class="clearfix"></div>
+              <div class="row col-lg-12">
+                <div class="col-lg-8"></div>
+                <div class="col-lg-3">
+                    <button type="submit" class="btnCSS floatR btn btn-danger" (click)="cancelAll(personalForm)">Cancel</button>              
+                    <button type="submit" class="btnCSS floatR btn btn-primary" (click)="saveDetails(personalForm)">Save</button>              
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </form>
+          </div>
+        </mat-tab>
+        <mat-tab label="Professional" (click)="educationDetails()">
+          <div class="padTop2Per">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th class="width20Per">Degree Name</th>
+                  <th class="width20Per">Speciality</th>
+                  <th class="width30Per">Institute</th>
+                  <th class="width20Per">From</th>            
+                  <th class="width10Per">
+                    <div style="float: left; padding-right: 25px;">Action</div>  
+                    <div>
+                      <span (click)="openEduPopup('addEducation', null)" style="font-size: 12px;"><a> <i class="fa fa-plus" aria-hidden="true"></i>Add </a></span> 
+                    </div>
+                  </th>            
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let edu of educationList">
+                  <th class="width20Per">{{edu.degreeName}} ({{edu.year}})</th>
+                  <th class="width20Per">{{edu.speciality}}</th>
+                  <th class="width30Per">{{edu.institute}}</th>
+                  <th class="width20Per">{{edu.city}}</th> 
+                  <td class="width10Per">
+                    <span (click)="openEduPopup('addEducation', edu)" style="padding: 0 13px; font-size: 12px;"> <i class="fa fa-pencil" aria-hidden="true"></i><a>Edit</a> </span> 
+                    <span (click)="openEduPopup('deleteEducation', edu)" style="font-size: 12px;"><i class="fa fa-trash" aria-hidden="true"></i><a>Delete</a></span>
+                  </td>          
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </mat-tab>
+        <mat-tab label="Clinic">
+          <div class="row col-lg-12">
+            <form  novalidate [formGroup]="clinicForm">
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style=" border-width: thin; border-style: groove; height: 425px;">
+                Clinic Photo
+              </div>
+              <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10" style="height: 425px;">
+                <div class="padTop15" style="padding-left: 10px; font-size: 12px;">
+                  <label for="">Clinic Details</label>
+                </div>
+                <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <label for="cName"><b>Clinic Name</b></label>
+                    <input type="text" class="form-control mr-sm-2" formControlName="clinicName" placeholder="Enter Clinic Name" name="clinicName" required>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <label for="tagLine"><b>Tag Line</b></label>
+                    <input type="text" class="form-control mr-sm-2" formControlName="tagLine" placeholder="Enter Tag Line" name="tagLine">                  
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12 padTop15">
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <label for="cNo"><b>Contact Number</b></label>
+                    <input type="text" class="form-control mr-sm-2" formControlName="contactNo" placeholder="Enter Contact Number" name="contactNo" required>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                      <label for="cNo1"><b>Contact Number 1</b></label>
+                      <input type="text" class="form-control mr-sm-2" formControlName="contactNo1" placeholder="Enter Contact Number 1" name="contactNo1" required>
+                    </div>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <label for="emailId"><b>Email Id</b></label>
+                    <input type="text" class="form-control mr-sm-2" formControlName="emailId" placeholder="Enter Email Id" name="emailId">                  
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <label for="registrationNo"><b>Email Id</b></label>
+                    <input type="text" class="form-control mr-sm-2" formControlName="registrationNo" placeholder="Enter Registration Number" name="registrationNo">                  
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+
+              <div class="clearfix"></div>
+              <div class="padTop15" style="padding-left: 10px; font-size: 12px;">
+                <label for="">Address Details</label>
+              </div>
+              <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                    <label for="state"><b>State</b></label>
+                    <input type="text" class="form-control mr-sm-2" formControlName="state" placeholder="Enter State Name" name="city" required>                  
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                    <label for="city"><b>City</b></label>
+                    <input type="text" class="form-control mr-sm-2" formControlName="city" placeholder="Enter City Name" name="city" required>                  
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                    <label for="line1"><b>Address Line 1</b></label>
+                    <input type="text" class="form-control mr-sm-2" formControlName="line1" placeholder="Enter Line 1" name="line1" required>                  
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                      <label for="line1"><b>Address Line 2</b></label>
+                      <input type="text" class="form-control mr-sm-2" formControlName="line2" placeholder="Enter Line 2" name="line2" required>                  
+                  </div>
+                  <div class="clearfix"></div>
+              </div>
+              <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12 padTop15">
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                    <label for="area"><b>Area</b></label>
+                    <input type="text" class="form-control mr-sm-2" formControlName="area" placeholder="Enter Area name" name="areaName" required>                  
+                </div> 
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                    <label for="pincode"><b>PIN Code</b></label>
+                    <input type="text" class="form-control mr-sm-2" formControlName="pincode" placeholder="Enter PIN Code" name="line2" required>                  
+                </div>              
+                <div class="clearfix"></div>
+              </div>
+
+              <div class="clearfix"></div>
+              <div class="padTop15" style="padding-left: 10px; font-size: 12px;">
+                <label for="">Doctor Timming in clinic </label>
+              </div>
+              <div class="">
+                  <table class="marLeft2Per table table-hover">
+                    <thead>
+                      <tr>
+                        <th class="width30Per">Day</th>
+                        <th class="width30Per">From</th>
+                        <th class="width30Per">To</th>
+                        <th class="width10Per">Action</th>            
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="width30Per">Monday</td>
+                        <td class="width30Per">09.00 AM</td>
+                        <td class="width30Per">09:00 PM</td>
+                        <td class="width10Per">
+                          <span> <i class="fa fa-pencil" aria-hidden="true"></i><a>Edit</a> </span> 
+                          <span><i class="fa fa-trash" aria-hidden="true"></i><a>Delete</a></span>
+                        </td>          
+                      </tr>
+                      <tr>
+                        <td class="width30Per">Tuesday</td>
+                        <td class="width30Per">09.00 AM</td>
+                        <td class="width30Per">09:00 PM</td>
+                        <td class="width10Per">
+                          <span> <i class="fa fa-pencil" aria-hidden="true"></i><a>Edit</a> </span> 
+                          <span><i class="fa fa-trash" aria-hidden="true"></i><a>Delete</a></span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+
+              <div class="clearfix"></div>
+              <div class="col-lg-12">
+                <div class="col-lg-9"></div>
+                <div class="col-lg-3">
+                    <button type="submit" class="btnCSS floatR btn btn-danger" (click)="cancelAll(personalForm)">Cancel</button>              
+                    <button type="submit" class="btnCSS floatR btn btn-primary" (click)="saveDetails(personalForm)">Save</button>              
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              </div>
+            </form>
+          
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
 </div>

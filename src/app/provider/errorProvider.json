@@ -1,0 +1,38 @@
+{
+  "firstMiddleLastName": [
+    { "type": "required", "message": "Name is required" },
+    { "type": "minlength", "message": "Name must be at least 3 characters long" },
+    { "type": "maxlength", "message": "Name cannot be more than 20 characters long" },
+    { "type": "pattern", "message": "Please enter valid name" }
+  ],
+  "email": [
+    { "type": "required", "message": "Email Id is required" },
+    { "type": "minlength", "message": "Email Id must be at least 7 characters long" },
+    { "type": "maxlength", "message": "Email Id cannot be more than 30 characters long" },
+    { "type": "pattern", "message": "Please enter valid email id" }
+  ],
+  "password": [
+    { "type": "required", "message": "Password is required" },
+    { "type": "minlength", "message": "Password must be at least 6 characters long" },
+    { "type": "maxlength", "message": "Password cannot be more than 15 characters long" },      
+    { "type": "pattern", "message": "Your password must contain at least one uppercase, one lowercase, and one number" }
+  ],
+  "confirmPassword": [
+    { "type": "required", "message": "Confirm password is required" },
+    { "type": "minlength", "message": "Password must be at least 6 characters long" },
+    { "type": "maxlength", "message": "Password cannot be more than 15 characters long" },      
+    { "type": "areEqual", "message": "Password mismatch" }
+  ],
+  "mobileNo": [
+    { "type": "required", "message": "Mobile number is required" },
+    { "type": "minlength", "message": "Mobile number must be at least 10 characters long" },
+    { "type": "maxlength", "message": "Mobile number cannot be more than 10 characters long" },
+    { "type": "pattern", "message": "Please enter valid mobile number" }
+  ],
+  "registrationNo": [
+    { "type": "required", "message": "Registration number is required" },
+    { "type": "minlength", "message": "Registration number must be at least 7 characters long" },
+    { "type": "maxlength", "message": "Registration number cannot be more than 30 characters long" },
+    { "type": "pattern", "message": "Please enter valid registration number" }
+  ]
+}
