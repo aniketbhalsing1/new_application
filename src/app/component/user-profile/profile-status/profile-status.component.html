@@ -1,67 +1,78 @@
 <div class="minHeight100Per">
     <div class="container-fluid well1 span6 padTop2Per">
 
-      <div style="height: 467px">
-          <div class="authRoutingDiv col-lg-12">
+      <div style="height: 596px">
+          <div class="col-lg-12">
               <div class="row col-lg-12">
                 <div class="col-lg-3"></div>
                 <div class="col-lg-6 padTop8Per">
                   <div cass="">
-                    <form novalidate> 
-                      <div class="container card" style="background: #aaaa;">
-                        <div style="padding: 0 40px 50px 40px;">
-                          <div class="loginCardHdr">
-                            <label>Welcome</label>
+                      <div class="container card" style="box-shadow: 5px 5px 8px #aaaaaa;">
+                        <div style="color: black; padding: 0 40px 50px 40px;">
+                          <div class="col-lg-12 row welcomeText">
+                            <label class="width100Per">Welcome</label>
                           </div>
-                          <div class="col-lg-12 row">
-                            <div>
-                              <label for="">Dr. {{personalDetails.firstName}} {{personalDetails.lastName}}</label>
-                            </div>
+                          <div class="col-lg-12 row" style=" font-size: 18px; text-align: center; line-height: 37.5px;">
+                              <label class="width100Per" for="">Dr. {{personalDetails.firstName}} {{personalDetails.lastName}}</label>
                           </div>
-
-                          <div class="col-lg-12 row">
-                            <div>
+                          <div class="clearfix"></div>
+                          
+                          <div class="col-lg-12 row f-14 lineHeight37">
+                            <div class="col-lg-6">
                               <label for="">Mobile No.</label>
                             </div>
-                            <div>
-                              <label for="">{{personalDetails.mobileVerified}}</label>
+                            <div class="col-lg-6">
+                              <label for="" *ngIf="personalDetails.mobileVerified" class="color-green">Verified</label>
+                              <label for="" *ngIf="!personalDetails.mobileVerified" class="color-red">Not Verified</label>
                             </div>
                           </div>
+                          <div class="clearfix"></div>
 
-                          <div class="col-lg-12 row">
-                            <div>
+                          <div class="col-lg-12 row f-14 lineHeight37">
+                            <div class="col-lg-6">
                               <label for="">Email Id</label>
                             </div>
-                            <div>
-                              <label for="">{{personalDetails.emailVerified}}</label>
+                            <div class="col-lg-6">
+                              <label for="" *ngIf="personalDetails.emailVerified" class="color-green">{{personalDetails.emailVerified}}</label>
+                              <label for="" *ngIf="!personalDetails.emailVerified" class="color-red">{{personalDetails.emailVerified}}</label>
                             </div>
                           </div>
+                          <div class="clearfix"></div>
 
-                          <div class="col-lg-12 row">
-                            <div>
+                          <div class="col-lg-12 row f-14 lineHeight37">
+                            <div class="col-lg-6">
                               <label for="">Education Details</label>
                             </div>
-                            <div>
-                              <label for="">{{personalDetails.educationProfile}}</label>
+                            <div class="col-lg-6">
+                              <label for="" *ngIf="personalDetails.educationProfile != 'Incomplete'" class="color-green">{{personalDetails.educationProfile}}</label>
+                              <label for="" *ngIf="personalDetails.educationProfile == 'Incomplete'" class="color-red">{{personalDetails.educationProfile}}</label>
                             </div>
                           </div>
+                          <div class="clearfix"></div>
 
-                          <div class="col-lg-12 row">
-                            <div>
+                          <div class="col-lg-12 row f-14 lineHeight37">
+                            <div class="col-lg-6">
                               <label for="">Clinic Details</label>
                             </div>
-                            <div>
-                              <label for="">{{personalDetails.clinicProfile}}</label>
+                            <div class="col-lg-6">
+                              <label for="" *ngIf="personalDetails.clinicProfile != 'Incomplete'" class="color-green">{{personalDetails.clinicProfile}}</label>
+                              <label for="" *ngIf="personalDetails.clinicProfile == 'Incomplete'" class="color-red">{{personalDetails.clinicProfile}}</label>
                             </div>
                           </div>
-                               
-                          <div class="padTop8Per textCenter">  
-                            <button class="saveBtn"  mat-raised-button cdkFocusInitial (click)="loginUser()">Continue</button>                
+                          <div class="clearfix"></div>
+                           
+                          <div class="col-lg-12 row f-14 textCenter">
+                            <span class="fontWeight600">You Need to complete Above details to start consulting patients</span>
+                          </div>
+                          <div class="clearfix"></div>
+
+                          <div class="padTop8Per textCenter lineHeight37">  
+                            <button class="saveBtn" mat-raised-button cdkFocusInitial  routerLink="/profile/details">Continue</button>                
                             <div class="clearfix"></div>
                           </div>            
+                          <div class="clearfix"></div>
                         </div>
                       </div>
-                    </form>
                   </div>  
                 </div>
                 <div class="col-lg-3"></div>
@@ -69,45 +80,3 @@
             </div>
       </div>
   </div>
-
-<!-- <div class="authRoutingDiv col-lg-12">
-    <div class="row col-lg-12">
-      <div class="col-lg-3"></div>
-      <div class="col-lg-6 padTop8Per">
-        <div cass="">
-          <form novalidate> 
-            <div class="container card" style="background: #aaaa;">
-              <div style="padding: 0 40px 50px 40px;">
-                <div class="loginCardHdr">
-                  <label>Welcome</label>
-                </div>
-                <div>
-                  <label for="">Mobile No.</label>
-                </div>
-                <div>
-                  <label for="">Email Id</label>
-                </div>
-                <div>
-                  <label for="">Education Details</label>
-                </div>                            
-                <div>
-                  <label for="">Clinic Details</label>
-                </div>                            
-                <div class="padTop8Per textCenter">  
-                  <button class="saveBtn"  mat-raised-button cdkFocusInitial (click)="loginUser()">Save</button>                
-                  <div class="clearfix"></div>
-                </div>
-  
-                <div class="padTop5Per textCenter color-white f-14">  
-                  <span>If you are not registered yet ? <a href="" routerLink="/signup" routerLinkActive="active">Sign Up</a></span>
-                  <div class="clearfix"></div>
-                </div>
-  
-              </div>
-            </div>
-          </form>
-        </div>  
-      </div>
-      <div class="col-lg-3"></div>
-    </div>
-  </div> -->

@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
         .subscribe(
             data => {
               this.toastr.success('User logged in successfull');
-              this.router.navigate(['/profileStatus']);
+              this.router.navigate(['profile/profileStatus']);
             },
             error => {
               this.loading = false;

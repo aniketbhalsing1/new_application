@@ -15,6 +15,8 @@ export class ProfileStatusComponent implements OnInit {
 	 } 
 
   ngOnInit() {
+    this.personalDetails = {"firstName" : '', "lastName" : '', "mobileVerified" : '', "emailVerified" : '', "educationProfile" : '', "clinicProfile" : ''};
+
       this.profileService.getDoctorProfileStatus()
         .subscribe(
             data => {

@@ -15,13 +15,10 @@ const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'verifyOTP', component: VerifyOtpComponent },
-    { path: 'verifyEmail', component: VerifyEmailComponent }
   ]
 },
-// {
-//     path: 'profileStatus',
-//     loadChildren: 'app/component/user-profile/user-profile.module#UserProfileModule'
-//   },
+{ path: 'verifyEmail', component: VerifyEmailComponent },
+
   {
     path: 'profile',
     loadChildren: 'app/component/user-profile/user-profile.module#UserProfileModule'

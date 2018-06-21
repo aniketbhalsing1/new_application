@@ -88,6 +88,10 @@ body  {
 
 
 .color-white { color: white}
+.color-green { color : green}
+.color-red { color : red}
+.color-black { color : black}
+
 
 .f-10 { font-size: 10px}
 .f-12 { font-size: 12px}
@@ -144,10 +148,22 @@ body  {
 .textLeft { text-align: left};
 .textRight { text-align: right}
 
+.fontWeight600{ font-weight: 600;}
+.lineHeight37 {line-height: 37.5px;}
 .profileHdr {
     margin: 0%;
     background: darkslateblue;
     color: white;
+    /* box-shadow: 5px 2px 8px #aaaaaa; */
+}
+
+.welcomeText {
+    font-size: 35px;
+    /* width: 100%; */
+    text-align: center;
+    color: black;
+    /* font-weight: 600;
+     */
     /* box-shadow: 5px 2px 8px #aaaaaa; */
 }
 .profImg {

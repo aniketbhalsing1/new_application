@@ -9,8 +9,8 @@ const routes: Routes = [
     path: '', 
     component: ProfileHeaderComponent,
     children: [
-      { path: '', component: DetailsComponent },
-      //{ path: 'profileStatus', component: ProfileStatusComponent }
+      { path: 'details', component: DetailsComponent },
+      { path: 'profileStatus', component: ProfileStatusComponent }
     
     ]
   },
