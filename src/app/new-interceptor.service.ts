@@ -17,7 +17,7 @@ import 'rxjs/add/observable/throw';
 @Injectable()
 export class MyHttpLogInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-  //  console.log('processing request', request);
+    console.log('processing request', request);
 
     // const customReq = request.clone({
     //   headers: request.headers.set('Content-Type',  'application/json')
@@ -42,7 +42,7 @@ export class MyHttpLogInterceptor implements HttpInterceptor {
       .handle(request)
       .do((ev: HttpEvent<any>) => {
         if (ev instanceof HttpResponse) {
-//          console.log('processing response', ev);
+          console.log('processing response', ev);
         }
       })
       .catch(response => {

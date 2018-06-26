@@ -58,9 +58,7 @@ export class AuthService {
     console.log(localStorage.getItem('Authorization'))
     return this.http.get<any>(this.requestURL+'doctor/mobile/resend')
         .map(data => {
-            if (data) {
-                console.log(data)
-            }
+            console.log("data",data)
             return data;
         });
   }

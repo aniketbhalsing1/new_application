@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-verify-otp',
@@ -15,10 +16,10 @@ export class VerifyOtpComponent implements OnInit {
   stateParam : object;
   loading : boolean = false;
 
-  constructor(private authService: AuthService,
-              private route: ActivatedRoute,
-              private router: Router) { 
-              }
+  constructor(private authService: AuthService, private route: ActivatedRoute,
+              private router: Router, public toastr: ToastsManager, vcr: ViewContainerRef) {
+                this.toastr.setRootViewContainerRef(vcr); 
+              } 
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -37,15 +38,17 @@ export class VerifyOtpComponent implements OnInit {
     this.authService.verifyOTP(this.verifyForm.value.otp)
       .subscribe(
           data => this.router.navigate(['login']),
-          error => this.loading = false
+          error => this.toastr.error(error.error.error[0].errorMessage)
       );
   }
 
   resendOTP(){
     this.authService.resendOTP(this.verifyForm.value.otp)
       .subscribe(
-          data => data,
-          error => console.log(error),
+          data => {
+            console.log(data)
+          },
+          error => this.toastr.error(error.error.error[0].errorMessage)
       );
   }  
 }

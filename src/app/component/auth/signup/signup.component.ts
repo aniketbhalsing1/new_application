@@ -62,7 +62,7 @@ export class SignupComponent implements OnInit {
   signupForm : FormGroup;
   loading : boolean = false;
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
-  fmlNamepattern = "^[a-zA-Z_-]{8,15}$";
+  fmlNamepattern = "^[a-zA-Z_-]{3,15}$";
   pwdPattern = "^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,12}$";
 //  mobnumPattern = "^((\\+91-?)|0)?[0-9]{10}$"; 
   mobnumPattern = "^[789]{1}[0-9]{9}$"; 
@@ -86,9 +86,9 @@ export class SignupComponent implements OnInit {
     this.signupForm = new FormGroup({
         firstName: new FormControl('', [ Validators.required, Validators.pattern(this.fmlNamepattern), Validators.minLength(3), Validators.maxLength(20) ]),
         lastName: new FormControl('', [ Validators.required, Validators.pattern(this.fmlNamepattern), Validators.minLength(3), Validators.maxLength(20) ]),
-        mobileNo: new FormControl('', [ Validators.required, Validators.pattern(this.mobnumPattern), Validators.maxLength(10), Validators.maxLength(10) ]),
-        emailId: new FormControl('', [ Validators.required, Validators.pattern(this.emailPattern), Validators.maxLength(10), Validators.maxLength(10) ]),
-        registrationNo: new FormControl('', [ Validators.required, Validators.maxLength(10), Validators.maxLength(10) ]),
+        mobileNo: new FormControl('', [ Validators.required, Validators.pattern(this.mobnumPattern), Validators.minLength(10), Validators.maxLength(10) ]),
+        emailId: new FormControl('', [ Validators.required, Validators.pattern(this.emailPattern), Validators.minLength(10), Validators.maxLength(30) ]),
+        registrationNo: new FormControl('', [ Validators.required, Validators.minLength(10), Validators.maxLength(10) ]),
         password: new FormControl('', [ Validators.required, Validators.minLength(6), Validators.maxLength(15) ]),
         confirmPassword: new FormControl('',[ Validators.required, Validators.minLength(6), Validators.maxLength(15) ]),
     }, (formGroup: FormGroup) => {
@@ -97,7 +97,7 @@ export class SignupComponent implements OnInit {
   }
 
   signUpUser(data){
-    if (!this.signupForm.valid) return this.validateAllFormFields(this.signupForm);    
+    //if (!this.signupForm.valid) return this.validateAllFormFields(this.signupForm);    
     console.log(this.signupForm)
     this.authService.signup(this.signupForm.value)
         .subscribe(
